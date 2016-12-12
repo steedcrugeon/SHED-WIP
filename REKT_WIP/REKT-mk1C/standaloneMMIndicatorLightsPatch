@@ -1,0 +1,54 @@
+@PART[rektMPC]:NEEDS[IndicatorLights]
+{
+    	MODULE
+	{
+		name = ModuleControllableEmissive
+		target = indication
+		emissiveName = cornerLights
+	}
+	MODULE 
+	{
+		name = ModuleResourceLevelIndicator
+		resourceName = ElectricCharge
+	}
+	MODULE 
+	{
+		name = ModuleResourceEnabledIndicator
+		enabledColor = ModuleResourceLevelIndicator
+		disabledColor = blink(ModuleResourceLevelIndicator, 900, $Off, 300)
+		emissiveName = cornerLights
+	}
+  MODULE
+	{
+		name = ModuleToggleLED
+		status = false
+	}
+  MODULE
+	{
+		name = ModuleControllableEmissive
+		target = lowLED
+		emissiveName = bottom	
+	}
+	MODULE
+	{
+		name = ModuleEmissiveArrayController
+		emissiveName = bottom
+		toggleID = ModuleToggleLED	
+		activeColor = blink(#FF0000, 300, $Off, 600, divide(index, 3))
+		inactiveColor = $Off
+	}
+  MODULE
+	{
+		name = ModuleControllableEmissive
+		target = hiLED
+		emissiveName = top	
+	}
+	MODULE
+	{
+		name = ModuleEmissiveArrayController
+		emissiveName = top
+		toggleID = ModuleToggleLED	
+		activeColor = blink(#FF0000, 300, $Off, 600, divide(index, 3))
+		inactiveColor = $Off
+	} 
+}
