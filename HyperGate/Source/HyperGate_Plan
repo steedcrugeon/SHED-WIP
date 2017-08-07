@@ -39,5 +39,31 @@ ModulehGateBeacon
         This is what the HyperGate looks for when 'aligning', invisible when gate is unfinished.
         - using the hGateSegTotal' count; when all the required nodes are docked (16 in total) the gate is then visible to other, unaligned gates.
         - when a gate is 'alinged' then th ebeacon is no longer visible to other gates.
+        - Also needs to generate a unique identifier for the completed gate (something like: "<orbiting body> + Gate + <incremental numerical value>")
         
+ModulehGateAligner
+
+        Using PartModule; 
+        - Stores a value accoridng the the total Vessel's state:
+                > OFFLINE       - Gate is partially completed and 
+                > MISALIGNED    - Gate construction is complete but not targetting this gate
+                > ALIGNED       - Gate construction is comeplte and the target gate is 'aligned' at this gate
+                > ACTIVE        - Gate has an active link/brdige with another gate (this gate is now untargetable).
+        - looks for the availble Gates in the list (unique identifier from ModulehGateBeacon) and display's those with a value "MISALIGNED".
+        - Remebers which Gate it is aligned to, and whether or not a link/bridge has been established.
+        - Reverts the Gate state to MISALIGNED if the target gate is destroyed.
         
+ModulehGateLink
+
+        Using PartModule:
+        - Checks to see if all conditions are met for 'Jump'
+                > Gate must be ACTIVE
+                > Vessel must be of correct mass (GO-NOGO flag must be set as GO)
+        - Performs the actual 'Jump' from one Gate to another.
+        
+ModulehGateTxRx
+
+        Using Partmodule:
+        - Does need EC (can;t send unpowered vessels through the Gate, they'll get lost) but only a minimal amount.
+        - Has 'GO - NOGO' flags set dependent of vessel mass at time of interaction with the gate.
+        - determines if vessel is within Gate 'proximity' (distance TBD) for Jump.
