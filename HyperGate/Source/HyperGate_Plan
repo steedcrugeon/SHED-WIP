@@ -1,0 +1,43 @@
+The HyperGate Mod for KSP
+
+Basic principles: (initial version)
+        - Each Gate comprises 8 segments, these must be contructed in obrit in order to function.
+        
+        - Once the Gate is constructed they can be 'aligned'.
+        
+        - Gates fomr matched pairs and you must have two unlinked gates in order to 'align' a pair.
+        
+        - When a gate is 'aligned' it forms a 'bridge/link' which allows vessels to pass through.
+        
+        - Gates must be 'aligned' in order for the 'birdge/link' to form and once aligned it can only be undone by destruction of one of the two gates.
+        
+        - Gate travel is only supported up to a certain mass (actual mass limit TBD)
+        
+        - A HyperGate Transponder is required to use the HyperGate system.
+        
+PartModule derivd modules pallend for HyperGate use as of 06/0/17
+
+ModulehGateDock
+ModulehGateBeacon
+ModulehGateAligner
+ModulehGateLink
+ModulehGateTxRx
+
+Predicted functions of each PartModule:
+
+ModulehGateDock
+
+        Using ModuleDockingNode; this part module will perform the function of a stock stocking port with these properties:
+        - docking can only be acehived in 1 orientation (it can connect to another segemnt only the corrct way).
+        - uses a gendered "nodeType = hGateDP" node to only mate with other segments in the correct position.
+        This part module will also have the folloing additions:
+        - Once docked it cannot be undocked.
+        - Increments to the vessels 'hGateSegTotal' count when docked (need to do this cleanly somehow).
+        
+ModulehGateBeacon
+
+        This is what the HyperGate looks for when 'aligning', invisible when gate is unfinished.
+        - using the hGateSegTotal' count; when all the required nodes are docked (16 in total) the gate is then visible to other, unaligned gates.
+        - when a gate is 'alinged' then th ebeacon is no longer visible to other gates.
+        
+        
