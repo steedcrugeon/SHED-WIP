@@ -15,7 +15,7 @@ Basic principles: (initial version)
         
         - A HyperGate Transponder is required to use the HyperGate system.
         
-PartModule derivd modules pallend for HyperGate use as of 06/0/17
+PartModule derived modules pallend for HyperGate use as of 06/0/17
 
 ModulehGateDock
 ModulehGateBeacon
@@ -64,6 +64,6 @@ ModulehGateLink
 ModulehGateTxRx
 
         Using Partmodule:
-        - Does need EC (can;t send unpowered vessels through the Gate, they'll get lost) but only a minimal amount.
+        - Does need ElectricCharge (can't send unpowered vessels through the Gate, they'll get lost) but only a minimal amount.
         - Has 'GO - NOGO' flags set dependent of vessel mass at time of interaction with the gate.
         - determines if vessel is within Gate 'proximity' (distance TBD) for Jump.
