@@ -1,0 +1,24 @@
+public static void Warp(CelestialBody TargetBody)
+        {
+            print("Void MrcarrotHyperdrive.WarpDriver.Warp is Triggered. Beginning warp action.");
+            var orbit = Orbit.CreateRandomOrbitFlyBy(TargetBody, 0.5);
+            if (FlightGlobals.ActiveVessel != null)
+            {
+                print("Activating WarpDrive, property FlightGlobals.ActiveVessel has a value.");
+                OrbitPhysicsManager.HoldVesselUnpack(60);
+                FlightGlobals.ActiveVessel.GoOnRails();
+                FlightGlobals.ActiveVessel.orbit.referenceBody = orbit.referenceBody;
+                FlightGlobals.ActiveVessel.orbit.LAN = orbit.LAN;
+                FlightGlobals.ActiveVessel.orbit.semiMajorAxis = orbit.semiMajorAxis;
+                FlightGlobals.ActiveVessel.orbit.eccentricity = orbit.eccentricity;
+                FlightGlobals.ActiveVessel.orbit.inclination = orbit.inclination;
+                FlightGlobals.ActiveVessel.orbit.argumentOfPeriapsis = orbit.argumentOfPeriapsis;
+
+            }
+            else
+            {
+                print("Error. Could not initiate Warp Drive. Property FlightGlobals.ActiveVessel is null.");
+                print("How on Kerbin did you even call this void if there is no active vessel?");
+                return;
+            }
+        }
